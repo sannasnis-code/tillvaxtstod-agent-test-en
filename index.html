@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Google Test Page</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #202124;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 15px 25px;
+            gap: 15px;
+            font-size: 14px;
+        }
+
+        .topbar a {
+            color: #202124;
+            text-decoration: none;
+        }
+
+        .apps {
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .profile {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #7e57c2;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 120px;
+        }
+
+        .logo {
+            font-size: 82px;
+            font-weight: 500;
+            letter-spacing: -7px;
+            margin-bottom: 30px;
+        }
+
+        .search {
+            width: 560px;
+            max-width: 80%;
+            height: 44px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            padding: 0 20px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search:hover,
+        .search:focus {
+            box-shadow: 0 1px 6px rgba(32,33,36,.28);
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        button {
+            background: #f8f9fa;
+            border: 1px solid #f8f9fa;
+            border-radius: 4px;
+            padding: 10px 16px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            border: 1px solid #dadce0;
+        }
+
+        .test-info {
+            margin-top: 50px;
+            padding: 15px 25px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #5f6368;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <a href="#">Gmail</a>
+        <a href="#">Images</a>
+        <span class="apps">⋮⋮⋮</span>
+        <div class="profile">T</div>
+    </div>
+
+    <div class="main">
+
+        <div class="logo">
+            Google
+        </div>
+
+        <input
+            class="search"
+            type="text"
+            placeholder="Search Google or type a URL"
+        >
+
+        <div class="buttons">
+            <button>Google Search</button>
+            <button>I'm Feeling Lucky</button>
+        </div>
+
+        <div class="test-info">
+            Agentforce / Embedded Messaging test page
+        </div>
+
+    </div>
+
+
+    <!-- ============================================ -->
+    <!-- SALESFORCE EMBEDDED MESSAGING SCRIPT HERE    -->
+    <!-- ============================================ -->
+
+    <!--
+        Klistra in Salesforce-scriptet här.
+
+        Exempel:
+
+        <script type="text/javascript">
+            // Salesforce Embedded Messaging bootstrap
+        </script>
+
+        <script
+            type="text/javascript"
+            src="YOUR_SALESFORCE_EMBEDDED_MESSAGING_URL">
+        </script>
+    -->
+<script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en-us'; // For example, enter 'en' or 'en-US'
+
+			embeddedservice_bootstrap.init(
+				'00Dds000005q4np',
+				'Website_Agent_Chat',
+				'https://app-customization-9761--uat.sandbox.my.site.com/ESWWebsiteAgentChat1791527653663',
+				{
+					scrt2URL: 'https://app-customization-9761--uat.sandbox.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+</script>
+<script type='text/javascript' src='https://app-customization-9761--uat.sandbox.my.site.com/ESWWebsiteAgentChat1791527653663/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
+<script>
+  window.addEventListener(
+    "onEmbeddedMessagingButtonCreated",
+    () => {
+      setTimeout(() => {
+        embeddedservice_bootstrap.utilAPI.launchChat()
+          .catch(error => console.error(error));
+      }, 10000);
+    },
+    { once: true }
+  );
+</script>	
+
+</body>
+</html>
